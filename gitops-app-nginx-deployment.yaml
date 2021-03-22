@@ -11,6 +11,7 @@ metadata:
   labels:
     app: gitops-app-nginx
   name: gitops-app-nginx
+  namespace: gitops-apps-nginx
   annotations:
     fluxcd.io/ignore: "true"
     fluxcd.io/automated: "false"
