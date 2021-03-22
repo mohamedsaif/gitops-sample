@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: gitops-app-nginx
+  name: gitops-apps-nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gitops-app-nginx
+  name: gitops-app-nginx
+  annotations:
+    fluxcd.io/ignore: "true"
+    fluxcd.io/automated: "false"
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: gitops-app-nginx
+  template:
+    metadata:
+      labels:
+        app: gitops-app-nginx
+    spec:
+      containers:
+      - image: nginx
+        name: gitops-app-nginx
+        ports:
+        - containerPort: 80
